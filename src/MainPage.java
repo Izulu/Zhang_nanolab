@@ -1,2 +1,4 @@
-public class MainPage extends Httpservlet {
+import javax.servlet.http.HttpServlet;
+
+public class MainPage extends HttpServlet {
 }
