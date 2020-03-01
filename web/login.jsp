@@ -5,30 +5,35 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script src="https://how2j.cn/study/jquery.min.js"></script>
-<script>
+<script src="js/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
 $(function(){
-   $("#login_button").click(function(){
-     var url="/login";
+   $("#login_button").click(function(event){
+     var page="login";
      var name = $("#input_name").val();
      var password = $("#input_password").val();
-        $.post(
-            url,
-            {"name":name, "password":password},
-            function(result){
-                alert("账号密码错误，登录失败");
+        $.ajax({
+            url:page,
+            data: {"name":name, "password":password},
+            async: true,
+            type:"post",
+            dataType:"text",
+            success: function(result){
+                if( result =='false'){alert('登录失败,账户密码错误')}
+                else{ window.location.href = '/home_page.jsp'}
+
             }
-        );
+        });
    });
 });
 
 </script>
-
+<div align="center" id="checkResult"></div>
 <form action="/login" method="post" align="center">
     账号：<input type="text" id ="input_name" name="name"> <br>
-    密码：<input type="text" id ="input_password" name="password"> <br>
+    密码：<input type="password" id ="input_password" name="password"> <br>
     <br>
-    <input type="submit" id="login_button" value="登录">
+    <input type="button" id="login_button" value="登录">
     <a href="/regist">
     <input type="button" value="注册">
     </a>
