@@ -17,4 +17,13 @@
         <servlet-name>InstrumentListServlet</servlet-name>
         <url-pattern>/listInstruments</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EventBookingServlet</servlet-name>
+        <servlet-class>servlet.EventBookingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EventBookingServlet</servlet-name>
+        <url-pattern>/bookingEvent</url-pattern>
+    </servlet-mapping>
 </web-app>
