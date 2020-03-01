@@ -1,2 +1,2 @@
-public class MainPage {
+public class MainPage extends Httpservlet {
 }
