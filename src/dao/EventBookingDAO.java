@@ -17,7 +17,7 @@ public class EventBookingDAO {
             String sql = "insert into bookingevents values(null, ?,?,?,?,?)";
             PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,be.getUser().getId());
-            ps.setInt(2,be.getIid());
+            ps.setString(2,be.getInstrumentName());
             ps.setTimestamp(3, DateUtil.util2sql(be.getStartTime()));
             ps.setTimestamp(4, DateUtil.util2sql(be.getEndTime()));
             ps.setString(5, be.getComment());
@@ -46,9 +46,9 @@ public class EventBookingDAO {
                 bookingevent be = new bookingevent();
                 be.setId(rs.getInt("id"));
                 be.setUser(user);
-                be.setStartTime(rs.getTime("startTime"));
-                be.setEndTime(rs.getTime("endTime"));
-                be.setIid(rs.getInt("iid"));
+                be.setStartTime(rs.getTimestamp("startTime"));
+                be.setEndTime(rs.getTimestamp("endTime"));
+                be.setInstrumentName(rs.getString("instrumentName"));
                 be.setComment(rs.getString("comment_"));
                 result.add(be);
             }
@@ -74,4 +74,15 @@ public class EventBookingDAO {
         }
     }
 
+    public static void main(String[] args) {
+        EventBookingDAO ebd = new EventBookingDAO();
+        User u = new User();
+        u.setId(1);
+        List<bookingevent> bookingeventList = ebd.list(u);
+        for(bookingevent be : bookingeventList){
+            System.out.println(be.getId());
+            System.out.println(be.getStartTime());
+            System.out.println(be.getEndTime());
+        }
+   }
 }

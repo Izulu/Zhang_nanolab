@@ -9,6 +9,27 @@ import java.util.List;
 
 public class InstrumentDAO {
 
+    public Instrument get(int id){
+        Instrument result = new Instrument();
+        try {
+            Connection c = DBUtil.getConnection();
+            String sql = "select * from instrument where id=?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                result.setName(rs.getString("name"));
+                result.setId(id);
+            }
+            ps.close();
+            c.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
     public List<Instrument> list(int start, int count){
         List<Instrument> result= new ArrayList<>();
         try{

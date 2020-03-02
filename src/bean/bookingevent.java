@@ -5,7 +5,7 @@ import java.util.Date;
 public class bookingevent {
     private int id;
     private User user;
-    private int iid;
+    private String instrumentName;
     private Date startTime;
     private Date endTime;
     private String comment;
@@ -26,8 +26,8 @@ public class bookingevent {
         return user;
     }
 
-    public int getIid() {
-        return iid;
+    public String getInstrumentName() {
+        return instrumentName;
     }
 
     public String getComment() {
@@ -50,8 +50,8 @@ public class bookingevent {
         this.user = user;
     }
 
-    public void setIid(int iid) {
-        this.iid = iid;
+    public void setInstrumentName(String instrumentName) {
+        this.instrumentName = instrumentName;
     }
 
     public void setComment(String comment) {

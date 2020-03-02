@@ -1,8 +1,10 @@
 package servlet;
 
+import bean.Instrument;
 import bean.User;
 import bean.bookingevent;
 import dao.EventBookingDAO;
+import dao.InstrumentDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,7 @@ public class EventBookingServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int iid = Integer.parseInt(request.getParameter("iid"));
+        Instrument instrument = new InstrumentDAO().get(iid);
         User user = (User) request.getSession().getAttribute("user");
         String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
@@ -35,7 +38,7 @@ public class EventBookingServlet extends HttpServlet {
         }
         String comment = request.getParameter("comment");
         bookingevent be = new bookingevent();
-        be.setIid(iid);
+        be.setInstrumentName(instrument.getName());
         be.setUser(user);
         be.setStartTime(startDate);
         be.setEndTime(endDate);
