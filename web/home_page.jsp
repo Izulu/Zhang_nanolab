@@ -11,7 +11,7 @@
 </div>
 <table align="center">
     <tr>
-    <td><a href="/bookingevents">我的预约</a></td>
+    <td><a href="/listBookingEvents">我的预约</a></td>
     <td><a href="/listInstruments">预约仪器</a></td>
     </tr>
 </table>

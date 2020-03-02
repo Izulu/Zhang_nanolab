@@ -11,10 +11,11 @@ $(function(){
         var iid = $(this).attr("iid");
         var startTime = $("input.startTime[iid="+iid+"]").val();
         var endTime = $("input.endTime[iid="+iid+"]").val();
+        var comment = $("input.comment[iid="+iid+"]").val();
         var url = "/bookingEvent";
             $.post(
                 url,
-                {"startTime":startTime, "iid":iid, "endTime":endTime},
+                {"startTime":startTime, "iid":iid, "endTime":endTime, "comment":comment},
                 function(result){
                     alert("预约成功");
                 }
@@ -34,6 +35,7 @@ $(function(){
         <td>仪器名称</td>
         <td>起始时间</td>
         <td>结束时间</td>
+        <td>备注</td>
         <td></td>
     </tr>
 <c:forEach items="${instruments}" var="instrument" varStatus="st" >
@@ -45,8 +47,12 @@ $(function(){
             <input type="datetime-local" class="endTime" iid="${instrument.id}">
         </td>
         <td>
+            <input type="text" class="comment" iid="${instrument.id}">
+        </td>
+        <td>
             <input type="submit" class="bookButton" iid="${instrument.id}" value="预约">
         <td>
     </tr>
 </c:forEach>
 </table>
+<div align="center"><a href="/listBookingEvents">查看预约</a> <a href="/home_page.jsp">返回</a></div>

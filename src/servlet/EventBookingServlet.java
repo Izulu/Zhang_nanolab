@@ -1,5 +1,9 @@
 package servlet;
 
+import bean.User;
+import bean.bookingevent;
+import dao.EventBookingDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +17,7 @@ public class EventBookingServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int iid = Integer.parseInt(request.getParameter("iid"));
+        User user = (User) request.getSession().getAttribute("user");
         String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
         startTime = startTime.replaceAll("T"," ");
@@ -28,8 +33,16 @@ public class EventBookingServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println("Instrument: " + iid);
-        System.out.println("StartTime: " + startDate);
-        System.out.println("endTime: " + endDate);
+        String comment = request.getParameter("comment");
+        bookingevent be = new bookingevent();
+        be.setIid(iid);
+        be.setUser(user);
+        be.setStartTime(startDate);
+        be.setEndTime(endDate);
+        be.setComment(comment);
+        new EventBookingDAO().add(be);
+//        System.out.println("Instrument: " + iid);
+//        System.out.println("StartTime: " + startDate);
+//        System.out.println("endTime: " + endDate);
     }
 }

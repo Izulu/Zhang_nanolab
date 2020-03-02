@@ -26,4 +26,13 @@
         <servlet-name>EventBookingServlet</servlet-name>
         <url-pattern>/bookingEvent</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListBookingEventsServlet</servlet-name>
+        <servlet-class>servlet.ListBookingEventsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListBookingEventsServlet</servlet-name>
+        <url-pattern>/listBookingEvents</url-pattern>
+    </servlet-mapping>
 </web-app>
